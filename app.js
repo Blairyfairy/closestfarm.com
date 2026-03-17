@@ -20,17 +20,15 @@ function initMap(){
   }).addTo(map);
 
   markets.forEach((m,i)=>{
-    setTimeout(()=>{
-      const marker = L.circleMarker([m.lat,m.lng],{
-        radius:12,
-        color:'#fff',
-        fillColor:'#34b87a',
-        fillOpacity:1,
-        weight:2
-      }).addTo(map);
-      markers.push(marker);
-      marker.on('click',()=> showMarketInfo(m));
-    },i*150);
+    const marker = L.circleMarker([m.lat,m.lng],{
+      radius:12,
+      color:'#fff',
+      fillColor:'#34b87a',
+      fillOpacity:1,
+      weight:2
+    }).addTo(map);
+    markers.push(marker);
+    marker.on('click',()=> showMarketInfo(m));
   });
 }
 
