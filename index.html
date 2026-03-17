@@ -3,41 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ClosestFarm</title>
-
+<title>ClosestFarm 🌱📍</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 <header>
   <div class="header-container">
-    <div class="logo">ClosestFarm 🌱📍</div>
-    <div class="search-container">
-      <input type="text" id="marketSearch" placeholder="Search farmers markets...">
+    <div class="logo">ClosestFarm 🌿📍</div>
+    <div class="search-login">
+      <input type="text" id="marketSearch" placeholder="Search farmers market...">
       <button id="searchBtn">Search</button>
-    </div>
-    <div class="login-container">
-      <input type="text" id="usernameInput" placeholder="Username (optional)">
       <button id="loginBtn">Login</button>
-      <span id="welcomeMsg"></span>
     </div>
   </div>
 </header>
 
 <main>
   <div id="map"></div>
-
-  <div id="marketInfo">
-    <h2 id="marketName"></h2>
-    <div id="photoGallery"></div>
-    <input type="file" id="photoUpload" accept="image/*" multiple>
+  <div id="infoCard" class="hidden">
+    <h2 id="marketName">Market Name</h2>
+    <div id="marketPhotos" class="photos"></div>
     <button id="checkInBtn">Check In</button>
-    <div id="shareBtns">
-      <button id="shareFB">Facebook</button>
-      <button id="shareTW">Twitter</button>
-      <button id="shareWA">WhatsApp</button>
+    <div class="social-share">
+      <span>Share:</span>
+      <button id="shareFB">FB</button>
+      <button id="shareTW">TW</button>
       <button id="shareTT">TikTok</button>
     </div>
   </div>
@@ -47,15 +39,20 @@
   <div class="footer-container">
     <div class="footer-section">
       <h3>About ClosestFarm</h3>
-      <p>Find farmers markets near you, check in, upload photos, and share your visits. Works with or without logging in.</p>
+      <p>Find and check in at farmers markets near you. Share your experience, photos, and discover local produce. Works even without login!</p>
     </div>
     <div class="footer-section">
       <h3>How to Use</h3>
-      <p>• Search markets<br>• Click markers<br>• Check-in & upload photos<br>• Optional login<br>• Share visits</p>
+      <p>
+        • Search or click a market on the map.<br>
+        • Check in & upload photos (optional login).<br>
+        • Share to social media.<br>
+        • Mobile-friendly & responsive.
+      </p>
     </div>
     <div class="footer-section">
       <h3>Technology</h3>
-      <p>• Leaflet.js + OpenStreetMap<br>• HTML/CSS/JavaScript<br>• LocalStorage persistence<br>• Responsive design</p>
+      <p>• Leaflet.js<br>• HTML / CSS / JavaScript<br>• Local JSON data for markets</p>
     </div>
   </div>
   <div class="footer-bottom">2026 ClosestFarm</div>
