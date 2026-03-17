@@ -14,11 +14,11 @@
 <header>
   <div class="header-container">
     <div class="logo">ClosestFarm 🌱📍</div>
-    <div class="city-input">
+    <div class="search-container">
       <input type="text" id="marketSearch" placeholder="Search farmers markets...">
       <button id="searchBtn">Search</button>
     </div>
-    <div class="user-login">
+    <div class="login-container">
       <input type="text" id="usernameInput" placeholder="Username (optional)">
       <button id="loginBtn">Login</button>
       <span id="welcomeMsg"></span>
@@ -28,16 +28,17 @@
 
 <main>
   <div id="map"></div>
-  <div id="marketInfo" class="hidden">
+
+  <div id="marketInfo">
     <h2 id="marketName"></h2>
-    <div id="photoGallery" class="photo-gallery"></div>
+    <div id="photoGallery"></div>
     <input type="file" id="photoUpload" accept="image/*" multiple>
     <button id="checkInBtn">Check In</button>
     <div id="shareBtns">
-      <button id="shareFB">Share on Facebook</button>
-      <button id="shareTW">Share on Twitter</button>
-      <button id="shareWA">Share on WhatsApp</button>
-      <button id="shareTT">Share on TikTok</button>
+      <button id="shareFB">Facebook</button>
+      <button id="shareTW">Twitter</button>
+      <button id="shareWA">WhatsApp</button>
+      <button id="shareTT">TikTok</button>
     </div>
   </div>
 </main>
@@ -46,15 +47,15 @@
   <div class="footer-container">
     <div class="footer-section">
       <h3>About ClosestFarm</h3>
-      <p>Explore farmers markets near you. Check-in, upload photos, and share visits with or without logging in.</p>
+      <p>Find farmers markets near you, check in, upload photos, and share your visits. Works with or without logging in.</p>
     </div>
     <div class="footer-section">
       <h3>How to Use</h3>
       <p>• Search markets<br>• Click markers<br>• Check-in & upload photos<br>• Optional login<br>• Share visits</p>
     </div>
     <div class="footer-section">
-      <h3>Technology Used</h3>
-      <p>• Leaflet.js + OpenStreetMap<br>• HTML / CSS / JavaScript<br>• LocalStorage for data persistence<br>• Responsive design</p>
+      <h3>Technology</h3>
+      <p>• Leaflet.js + OpenStreetMap<br>• HTML/CSS/JavaScript<br>• LocalStorage persistence<br>• Responsive design</p>
     </div>
   </div>
   <div class="footer-bottom">2026 ClosestFarm</div>
