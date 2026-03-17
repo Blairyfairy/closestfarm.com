@@ -2,7 +2,7 @@
 body { margin:0; font-family:'Poppins',sans-serif; background:#f5f7fa; }
 
 /* Header */
-header { background: linear-gradient(90deg,#34b87a,#2ecc71); padding:16px 28px; color:white; }
+header { background: linear-gradient(90deg,#3498db,#2ecc71); padding:16px 28px; color:white; }
 .header-container { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; max-width:1200px; margin:auto; gap:10px; }
 .logo { font-size:1.6em; font-weight:600; cursor:pointer; transition: transform 0.3s ease; }
 .logo:hover { transform: scale(1.05) rotate(-2deg); }
