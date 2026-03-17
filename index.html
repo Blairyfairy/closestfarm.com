@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ClosestFarm</title>
-
+<title>ClosestFarm 🌱📍</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <link rel="stylesheet" href="style.css">
@@ -15,7 +14,7 @@
   <div class="header-container">
     <div class="logo">ClosestFarm 🌱📍</div>
     <div class="user-login">
-      <input type="text" id="usernameInput" placeholder="Enter username">
+      <input type="text" id="usernameInput" placeholder="Enter username (optional)">
       <button id="loginBtn">Login</button>
       <span id="welcomeMsg"></span>
     </div>
@@ -26,8 +25,22 @@
   <div class="search-bar">
     <input type="text" id="marketSearch" placeholder="Search farmers markets...">
   </div>
+
   <div id="map"></div>
-  <div id="marketInfo" class="hidden"></div>
+
+  <div id="marketInfo" class="hidden">
+    <h2 id="marketName"></h2>
+    <div id="photoGallery"></div>
+    <input type="file" id="photoUpload" accept="image/*">
+    <button id="checkInBtn">Check In</button>
+    <div id="shareBtns">
+      <button id="shareFB">Share on Facebook</button>
+      <button id="shareTW">Share on Twitter</button>
+      <button id="shareWA">Share on WhatsApp</button>
+      <button id="shareTT">Share on TikTok</button>
+    </div>
+    <div id="badges"></div>
+  </div>
 </main>
 
 <footer>
@@ -35,17 +48,17 @@
     <div class="footer-section">
       <h3>About ClosestFarm</h3>
       <p>
-        Explore farmers markets near you. Click a market to see photos, check-ins, and share your visit. Fully static demo with LocalStorage, gamification, and modern UI.
+        Explore farmers markets near you. Check-in, upload photos, and share visits with or without logging in. Fully static demo with gamification and modern UI.
       </p>
     </div>
     <div class="footer-section">
       <h3>How to Use</h3>
       <p>
-        • Login with a username<br>
+        • Optional login for username badges<br>
         • Search markets and click markers<br>
         • Check-in and upload photos<br>
-        • Share to social media<br>
-        • Earn points and badges
+        • Share visits to social media<br>
+        • Earn badges even anonymously
       </p>
     </div>
     <div class="footer-section">
@@ -54,17 +67,14 @@
         • Leaflet.js + OpenStreetMap<br>
         • HTML / CSS / JavaScript<br>
         • LocalStorage for persistence<br>
-        • Fully responsive
+        • Responsive, modern UI
       </p>
     </div>
   </div>
   <div class="footer-bottom">2026 ClosestFarm</div>
 </footer>
 
-<!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-<!-- Your custom app JS -->
 <script src="app.js" defer></script>
 </body>
 </html>
