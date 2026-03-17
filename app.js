@@ -12,14 +12,13 @@ const markets = [
   {name:"Paris Market", lat:48.8566, lng:2.3522},
 ];
 
-// --- Initialize Map ---
+// Initialize Map
 function initMap(){
   map = L.map('map').setView([20,0], 2);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
     attribution:'&copy; OpenStreetMap contributors'
   }).addTo(map);
 
-  // Add markers
   markets.forEach((m,i)=>{
     setTimeout(()=>{
       const marker = L.circleMarker([m.lat,m.lng],{
@@ -35,7 +34,7 @@ function initMap(){
   });
 }
 
-// --- Show Market Info ---
+// Show Market Info
 function showMarketInfo(market){
   const card = document.getElementById('marketInfo');
   document.getElementById('marketName').innerText = market.name;
@@ -43,7 +42,7 @@ function showMarketInfo(market){
   loadGallery(market);
 }
 
-// --- Gallery & Storage ---
+// Gallery & Storage
 function loadGallery(market){
   const gallery = document.getElementById('photoGallery');
   gallery.innerHTML = "";
@@ -55,6 +54,7 @@ function loadGallery(market){
   });
 }
 
+// Upload photos
 document.getElementById('photoUpload').addEventListener('change', function(){
   const files = Array.from(this.files);
   const marketName = document.getElementById('marketName').innerText;
@@ -70,7 +70,7 @@ document.getElementById('photoUpload').addEventListener('change', function(){
   });
 });
 
-// --- Check In ---
+// Check In
 document.getElementById('checkInBtn').addEventListener('click', ()=>{
   const marketName = document.getElementById('marketName').innerText;
   const checkIns = JSON.parse(localStorage.getItem('checkIns')) || [];
@@ -79,14 +79,14 @@ document.getElementById('checkInBtn').addEventListener('click', ()=>{
   alert(`Checked in at ${marketName}!`);
 });
 
-// --- Login ---
+// Login
 document.getElementById('loginBtn').addEventListener('click', ()=>{
   username = document.getElementById('usernameInput').value || 'Anonymous';
   document.getElementById('welcomeMsg').innerText = `Welcome, ${username}!`;
   localStorage.setItem('username', username);
 });
 
-// --- Search ---
+// Search
 document.getElementById('marketSearch').addEventListener('input', function(){
   const query = this.value.toLowerCase();
   markers.forEach((marker,i)=>{
@@ -96,7 +96,7 @@ document.getElementById('marketSearch').addEventListener('input', function(){
   });
 });
 
-// --- Social Sharing ---
+// Social Sharing
 function shareURL(platform){
   const marketName = document.getElementById('marketName').innerText;
   const text = encodeURIComponent(`I just checked in at ${marketName}! #ClosestFarm`);
@@ -107,13 +107,12 @@ function shareURL(platform){
   if(platform==='TT') alert("TikTok sharing: copy & post manually due to no API.");
   if(url) window.open(url,'_blank');
 }
-
 document.getElementById('shareFB').addEventListener('click', ()=>shareURL('FB'));
 document.getElementById('shareTW').addEventListener('click', ()=>shareURL('TW'));
 document.getElementById('shareWA').addEventListener('click', ()=>shareURL('WA'));
 document.getElementById('shareTT').addEventListener('click', ()=>shareURL('TT'));
 
-// --- Init ---
+// Init
 window.onload = ()=>{
   initMap();
   const savedName = localStorage.getItem('username');
