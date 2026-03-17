@@ -1,33 +1,142 @@
-/* Base Styles */
-body { margin:0; font-family:'Poppins', sans-serif; background:#f0f4f8; color:#333; }
-header { background: linear-gradient(90deg, #4CAF50, #81C784); color:white; padding:16px; display:flex; justify-content:space-between; align-items:center; }
-.logo { font-size:1.8em; font-weight:700; letter-spacing:1px; }
-.user-login input { padding:8px; border-radius:6px; border:none; width:180px; }
-.user-login button { padding:8px 12px; border:none; border-radius:6px; background:#FFD93D; font-weight:600; cursor:pointer; transition: transform 0.2s ease; }
-.user-login button:hover { transform: scale(1.05); }
+body {
+  font-family:'Poppins',sans-serif;
+  margin:0;
+  background:#f5f7fa;
+}
 
-/* Map */
-#map { height:70vh; width:100%; margin-top:10px; border-radius:10px; }
+/* HEADER */
+header {
+  background: linear-gradient(90deg,#3498db,#2ecc71);
+  padding:16px 28px;
+  color:white;
+}
+.header-container{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  max-width:1200px;
+  margin:auto;
+}
+.logo{
+  font-size:1.6em;
+  font-weight:600;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.user-login{
+  display:flex;
+  gap:6px;
+  align-items:center;
+}
+.user-login input{
+  padding:6px 10px;
+  border-radius:5px;
+  border:none;
+}
+.user-login button{
+  padding:6px 12px;
+  border:none;
+  border-radius:5px;
+  background:#FFD93D;
+  cursor:pointer;
+  font-weight:600;
+}
+#welcomeMsg{
+  margin-left:10px;
+  font-weight:600;
+}
 
-/* Info Panel */
-#infoPanel { background:white; padding:15px; max-width:450px; margin:10px auto; border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.2); display:none; }
-.gallery img { width:80px; margin:4px; border-radius:6px; cursor:pointer; transition: transform 0.2s ease; }
-.gallery img:hover { transform: scale(1.05); }
+/* SEARCH */
+.search-bar{
+  max-width:1200px;
+  margin:16px auto;
+  display:flex;
+  justify-content:center;
+}
+.search-bar input{
+  width:90%;
+  max-width:400px;
+  padding:8px 12px;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
 
-/* Search */
-#searchBar { display:flex; justify-content:center; padding:10px; gap:6px; }
-#marketSearch { width:220px; padding:6px; border-radius:6px; border:1px solid #ccc; }
-#searchBtn { padding:6px 10px; border:none; border-radius:6px; background:#4CAF50; color:white; cursor:pointer; }
+/* MAP */
+#map{
+  height:70vh;
+  width:100%;
+  margin:0;
+}
 
-/* Share Buttons */
-.share-buttons a { margin-right:6px; padding:4px 8px; background:#81C784; color:white; border-radius:4px; text-decoration:none; font-size:0.85em; transition: transform 0.2s; }
-.share-buttons a:hover { transform: scale(1.1); }
+/* MARKET INFO PANEL */
+#marketInfo{
+  padding:15px;
+  background:white;
+  box-shadow:0 8px 20px rgba(0,0,0,.25);
+  max-width:420px;
+  margin: -40px auto 20px auto;
+  border-radius:12px;
+  text-align:center;
+  transform: translateY(-20px);
+  opacity:0;
+  transition: all 0.5s ease;
+  position:relative;
+  z-index:100;
+}
+#marketInfo.show{
+  transform: translateY(0);
+  opacity:1;
+}
+#marketInfo img{
+  max-width:90%;
+  margin:8px 0;
+  border-radius:8px;
+}
+#marketInfo button{
+  margin:6px;
+  padding:6px 12px;
+  border:none;
+  border-radius:6px;
+  background:#4ECDC4;
+  color:white;
+  cursor:pointer;
+}
 
-/* Footer */
-footer { background:#2e3b4e; color:white; text-align:center; padding:20px; font-size:0.9em; }
+/* FOOTER */
+footer{
+  background: linear-gradient(135deg,#0a2540,#102e56);
+  color:#d0d8e5;
+  padding:40px 20px 20px 20px;
+}
+.footer-container{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:30px;
+}
+.footer-section h3{
+  margin-top:0;
+  color:#ffffff;
+}
+.footer-section p{
+  font-size:.9em;
+  line-height:1.6em;
+}
+.footer-bottom{
+  text-align:center;
+  margin-top:30px;
+  font-size:.85em;
+  color:#8fa6c0;
+}
 
-/* Responsive */
-@media(max-width:768px){
-  .user-login input { width:120px; }
-  #infoPanel { width:90%; margin:10px auto; }
+@media (max-width:600px){
+  .header-container{
+    flex-direction:column;
+    gap:10px;
+  }
+  .user-login{
+    flex-direction:column;
+  }
 }
