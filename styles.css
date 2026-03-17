@@ -1,12 +1,11 @@
+/* General */
 body {
   font-family:'Poppins',sans-serif;
   margin:0;
   background:#f5f7fa;
 }
-
-/* HEADER */
 header {
-  background: linear-gradient(90deg,#3498db,#2ecc71);
+  background: linear-gradient(90deg,#34c759,#0a84ff);
   padding:16px 28px;
   color:white;
 }
@@ -23,17 +22,18 @@ header {
   display:flex;
   align-items:center;
   gap:8px;
+  cursor:pointer;
+  transition: transform 0.3s ease;
 }
-.user-login{
-  display:flex;
-  gap:6px;
-  align-items:center;
-}
+.logo:hover { transform: scale(1.05) rotate(-2deg);}
 .user-login input{
   padding:6px 10px;
   border-radius:5px;
   border:none;
+  width:160px;
+  transition: box-shadow 0.3s ease;
 }
+.user-login input:focus{ box-shadow:0 0 10px #FFD93D; outline:none;}
 .user-login button{
   padding:6px 12px;
   border:none;
@@ -41,69 +41,92 @@ header {
   background:#FFD93D;
   cursor:pointer;
   font-weight:600;
+  transition: transform 0.2s ease;
 }
-#welcomeMsg{
-  margin-left:10px;
-  font-weight:600;
-}
+.user-login button:hover{ transform: scale(1.05);}
 
-/* SEARCH */
+/* Search bar */
 .search-bar{
   max-width:1200px;
-  margin:16px auto;
+  margin:20px auto 0 auto;
   display:flex;
   justify-content:center;
 }
 .search-bar input{
-  width:90%;
+  width:100%;
   max-width:400px;
-  padding:8px 12px;
+  padding:10px;
   border-radius:8px;
-  border:1px solid #ccc;
+  border:none;
+  box-shadow:0 2px 6px rgba(0,0,0,0.2);
 }
 
-/* MAP */
+/* Map */
 #map{
   height:70vh;
   width:100%;
   margin:0;
 }
 
-/* MARKET INFO PANEL */
+/* Market Info */
 #marketInfo{
   padding:15px;
   background:white;
   box-shadow:0 8px 20px rgba(0,0,0,.25);
-  max-width:420px;
-  margin: -40px auto 20px auto;
+  max-width:500px;
+  margin:20px auto;
   border-radius:12px;
   text-align:center;
   transform: translateY(-20px);
   opacity:0;
   transition: all 0.5s ease;
-  position:relative;
-  z-index:100;
 }
 #marketInfo.show{
   transform: translateY(0);
   opacity:1;
 }
-#marketInfo img{
-  max-width:90%;
-  margin:8px 0;
-  border-radius:8px;
+#marketInfo h2{margin-bottom:12px;}
+#photoGallery{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-bottom:12px;
 }
-#marketInfo button{
-  margin:6px;
+#photoGallery img{
+  width:80px;
+  height:80px;
+  object-fit:cover;
+  border-radius:8px;
+  cursor:pointer;
+  transition: transform 0.3s ease;
+}
+#photoGallery img:hover{
+  transform: scale(1.1);
+}
+#shareBtns button{
+  margin:4px;
   padding:6px 12px;
   border:none;
   border-radius:6px;
-  background:#4ECDC4;
-  color:white;
   cursor:pointer;
+  font-weight:600;
+  background:#34c759;
+  color:white;
+  transition:all 0.3s ease;
+}
+#shareBtns button:hover{
+  transform: scale(1.05);
 }
 
-/* FOOTER */
+/* Badges */
+#badges{
+  margin-top:12px;
+  font-size:.9em;
+  color:#0a84ff;
+}
+
+/* Footer */
 footer{
   background: linear-gradient(135deg,#0a2540,#102e56);
   color:#d0d8e5;
@@ -131,12 +154,9 @@ footer{
   color:#8fa6c0;
 }
 
+/* Responsive */
 @media (max-width:600px){
-  .header-container{
-    flex-direction:column;
-    gap:10px;
-  }
-  .user-login{
-    flex-direction:column;
-  }
+  .header-container{flex-direction:column; gap:10px;}
+  .user-login input{width:100%;}
+  #marketInfo{max-width:90%;}
 }
