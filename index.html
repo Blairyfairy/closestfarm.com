@@ -3,37 +3,55 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ClosestFarm.com 🌱📍</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<title>ClosestFarm.com – Explore Farmers Markets</title>
+<link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-<link rel="stylesheet" href="styles.css">
-
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-storage-compat.js"></script>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="icon" href="favicon.ico">
 </head>
-
 <body>
+
 <header>
   <div class="header-container">
-    <div class="logo">ClosestFarm.com 🌱📍</div>
-    <div>
-      <button id="loginBtn">Sign In / Sign Up</button>
+    <div class="logo">ClosestFarm 🌾📍</div>
+    <div class="user-login">
+      <input type="text" id="usernameInput" placeholder="Enter your name">
+      <button id="loginBtn">Login</button>
     </div>
   </div>
 </header>
 
 <main>
+  <div id="searchBar">
+    <input type="text" id="marketSearch" placeholder="Search markets by name or city">
+    <button id="searchBtn">Search</button>
+  </div>
+
   <div id="map"></div>
-  <div id="infoCard"></div>
+
+  <div id="infoPanel" class="hidden">
+    <h3 id="marketName"></h3>
+    <div id="photosContainer" class="gallery"></div>
+    <input type="file" id="photoUpload">
+    <button id="checkInBtn">Check In Here</button>
+    <div id="pointsDisplay"></div>
+    <div id="badgesDisplay"></div>
+    <div id="shareButtons" class="share-buttons"></div>
+  </div>
 </main>
 
-<footer>© 2026 ClosestFarm.com - Free & Open</footer>
+<footer>
+  <div class="footer-text">
+    ClosestFarm.com – Explore, Check-in, Share, Support Local Farmers!  
+    <br>2026 © ClosestFarm.com
+  </div>
+</footer>
 
-<script src="app.js" defer></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/user.js"></script>
+<script src="js/gamification.js"></script>
+<script src="js/social.js"></script>
+<script src="js/search.js"></script>
+<script src="js/app.js"></script>
+<script src="js/ui.js"></script>
 </body>
 </html>
