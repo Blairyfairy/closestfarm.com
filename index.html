@@ -3,16 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ClosestFarm 🌱📍</title>
+<title>ClosestFarm</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
+<body>
 <header>
   <div class="header-container">
     <div class="logo">ClosestFarm 🌱📍</div>
+    <div class="city-input">
+      <input type="text" id="marketSearch" placeholder="Search farmers markets...">
+      <button id="searchBtn">Search</button>
+    </div>
     <div class="user-login">
       <input type="text" id="usernameInput" placeholder="Username (optional)">
       <button id="loginBtn">Login</button>
@@ -22,12 +28,7 @@
 </header>
 
 <main>
-  <div class="search-bar">
-    <input type="text" id="marketSearch" placeholder="Search farmers markets...">
-  </div>
-
   <div id="map"></div>
-
   <div id="marketInfo" class="hidden">
     <h2 id="marketName"></h2>
     <div id="photoGallery" class="photo-gallery"></div>
@@ -50,17 +51,17 @@
     </div>
     <div class="footer-section">
       <h3>How to Use</h3>
-      <p>• Optional login<br>• Search markets<br>• Click markers<br>• Check-in & upload photos<br>• Share visits</p>
+      <p>• Search markets<br>• Click markers<br>• Check-in & upload photos<br>• Optional login<br>• Share visits</p>
     </div>
     <div class="footer-section">
       <h3>Technology Used</h3>
-      <p>• Leaflet.js + OpenStreetMap<br>• HTML/CSS/JS<br>• LocalStorage for data persistence<br>• Responsive UI</p>
+      <p>• Leaflet.js + OpenStreetMap<br>• HTML / CSS / JavaScript<br>• LocalStorage for data persistence<br>• Responsive design</p>
     </div>
   </div>
   <div class="footer-bottom">2026 ClosestFarm</div>
 </footer>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="app.js"></script>
+<script src="app.js" defer></script>
 </body>
 </html>
