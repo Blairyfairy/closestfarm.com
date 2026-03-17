@@ -3,50 +3,65 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ClosestFarm.com – Explore Farmers Markets</title>
-<link rel="stylesheet" href="style.css">
+<title>ClosestFarm</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-<link rel="icon" href="favicon.ico">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
   <div class="header-container">
-    <div class="logo">ClosestFarm 🌾📍</div>
+    <div class="logo">ClosestFarm 🌱📍</div>
     <div class="user-login">
-      <input type="text" id="usernameInput" placeholder="Enter your name">
+      <input type="text" id="usernameInput" placeholder="Enter username">
       <button id="loginBtn">Login</button>
+      <span id="welcomeMsg"></span>
     </div>
   </div>
 </header>
 
 <main>
-  <div id="searchBar">
-    <input type="text" id="marketSearch" placeholder="Search markets by name or city">
-    <button id="searchBtn">Search</button>
+  <div class="search-bar">
+    <input type="text" id="marketSearch" placeholder="Search farmers markets...">
   </div>
-
   <div id="map"></div>
-
-  <div id="infoPanel" class="hidden">
-    <h3 id="marketName"></h3>
-    <div id="photosContainer" class="gallery"></div>
-    <input type="file" id="photoUpload">
-    <button id="checkInBtn">Check In Here</button>
-    <div id="pointsDisplay"></div>
-    <div id="badgesDisplay"></div>
-    <div id="shareButtons" class="share-buttons"></div>
-  </div>
+  <div id="marketInfo" class="hidden"></div>
 </main>
 
 <footer>
-  <div class="footer-text">
-    ClosestFarm.com – Explore, Check-in, Share, Support Local Farmers!  
-    <br>2026 © ClosestFarm.com
+  <div class="footer-container">
+    <div class="footer-section">
+      <h3>About ClosestFarm</h3>
+      <p>
+        Explore farmers markets near you. Click a market to see photos, check-ins, and share your visit. Fully static demo with LocalStorage, gamification, and modern UI.
+      </p>
+    </div>
+    <div class="footer-section">
+      <h3>How to Use</h3>
+      <p>
+        • Login with a username<br>
+        • Search markets and click markers<br>
+        • Check-in and upload photos<br>
+        • Share to social media<br>
+        • Earn points and badges
+      </p>
+    </div>
+    <div class="footer-section">
+      <h3>Technology Used</h3>
+      <p>
+        • Leaflet.js + OpenStreetMap<br>
+        • HTML / CSS / JavaScript<br>
+        • LocalStorage for persistence<br>
+        • Fully responsive
+      </p>
+    </div>
   </div>
+  <div class="footer-bottom">2026 ClosestFarm</div>
 </footer>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="app.js"></script>
+<script src="app.js" defer></script>
 </body>
 </html>
