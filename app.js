@@ -12,53 +12,45 @@ const markets = [
   {name:"Paris Market", lat:48.8566, lng:2.3522},
 ];
 
-// Initialize Map
 function initMap(){
-  map = L.map('map').setView([20,0],2);
+  map=L.map('map').setView([20,0],2);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
     attribution:'&copy; OpenStreetMap contributors'
   }).addTo(map);
 
   markets.forEach((m,i)=>{
-    const marker = L.circleMarker([m.lat,m.lng],{
-      radius:12,
-      color:'#fff',
-      fillColor:'#34b87a',
-      fillOpacity:1,
-      weight:2
+    const marker=L.circleMarker([m.lat,m.lng],{
+      radius:12,color:'#fff',fillColor:'#34b87a',fillOpacity:1,weight:2
     }).addTo(map);
     markers.push(marker);
-    marker.on('click',()=> showMarketInfo(m));
+    marker.on('click',()=>showMarketInfo(m));
   });
 }
 
-// Show Market Info
 function showMarketInfo(market){
-  const card = document.getElementById('marketInfo');
-  document.getElementById('marketName').innerText = market.name;
+  const card=document.getElementById('marketInfo');
+  document.getElementById('marketName').innerText=market.name;
   card.classList.add('show');
   loadGallery(market);
 }
 
-// Gallery
 function loadGallery(market){
-  const gallery = document.getElementById('photoGallery');
+  const gallery=document.getElementById('photoGallery');
   gallery.innerHTML="";
-  const photos = JSON.parse(localStorage.getItem(market.name)) || [];
+  const photos=JSON.parse(localStorage.getItem(market.name))||[];
   photos.forEach(src=>{
-    const img = document.createElement('img');
+    const img=document.createElement('img');
     img.src=src;
     gallery.appendChild(img);
   });
 }
 
-// Upload photos
 document.getElementById('photoUpload').addEventListener('change',function(){
-  const files = Array.from(this.files);
-  const marketName = document.getElementById('marketName').innerText;
-  const stored = JSON.parse(localStorage.getItem(marketName))||[];
+  const files=Array.from(this.files);
+  const marketName=document.getElementById('marketName').innerText;
+  const stored=JSON.parse(localStorage.getItem(marketName))||[];
   files.forEach(f=>{
-    const reader = new FileReader();
+    const reader=new FileReader();
     reader.onload=function(e){
       stored.push(e.target.result);
       localStorage.setItem(marketName, JSON.stringify(stored));
@@ -68,23 +60,20 @@ document.getElementById('photoUpload').addEventListener('change',function(){
   });
 });
 
-// Check-In
 document.getElementById('checkInBtn').addEventListener('click',()=>{
   const marketName=document.getElementById('marketName').innerText;
-  const checkIns = JSON.parse(localStorage.getItem('checkIns'))||[];
+  const checkIns=JSON.parse(localStorage.getItem('checkIns'))||[];
   checkIns.push({market:marketName,user:username||'Anonymous',time:Date.now()});
   localStorage.setItem('checkIns',JSON.stringify(checkIns));
   alert(`Checked in at ${marketName}!`);
 });
 
-// Login
 document.getElementById('loginBtn').addEventListener('click',()=>{
   username=document.getElementById('usernameInput').value||'Anonymous';
   document.getElementById('welcomeMsg').innerText=`Welcome, ${username}!`;
-  localStorage.setItem('username', username);
+  localStorage.setItem('username',username);
 });
 
-// Search
 document.getElementById('marketSearch').addEventListener('input',function(){
   const query=this.value.toLowerCase();
   markers.forEach((marker,i)=>{
@@ -94,7 +83,6 @@ document.getElementById('marketSearch').addEventListener('input',function(){
   });
 });
 
-// Social Sharing
 function shareURL(platform){
   const marketName=document.getElementById('marketName').innerText;
   const text=encodeURIComponent(`I just checked in at ${marketName}! #ClosestFarm`);
@@ -102,7 +90,7 @@ function shareURL(platform){
   if(platform==='FB') url=`https://www.facebook.com/sharer/sharer.php?u=${text}`;
   if(platform==='TW') url=`https://twitter.com/intent/tweet?text=${text}`;
   if(platform==='WA') url=`https://wa.me/?text=${text}`;
-  if(platform==='TT') alert("TikTok sharing: copy & post manually due to no API.");
+  if(platform==='TT') alert("TikTok: copy & post manually.");
   if(url) window.open(url,'_blank');
 }
 document.getElementById('shareFB').addEventListener('click',()=>shareURL('FB'));
@@ -110,12 +98,8 @@ document.getElementById('shareTW').addEventListener('click',()=>shareURL('TW'));
 document.getElementById('shareWA').addEventListener('click',()=>shareURL('WA'));
 document.getElementById('shareTT').addEventListener('click',()=>shareURL('TT'));
 
-// Init
 window.onload=()=>{
   initMap();
   const savedName=localStorage.getItem('username');
-  if(savedName){
-    username=savedName;
-    document.getElementById('welcomeMsg').innerText=`Welcome, ${username}!`;
-  }
+  if(savedName){ username=savedName; document.getElementById('welcomeMsg').innerText=`Welcome, ${username}!`; }
 };
