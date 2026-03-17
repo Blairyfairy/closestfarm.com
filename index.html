@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClosestFarm.com 🌱📍</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<link rel="stylesheet" href="styles.css">
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-storage-compat.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+
+<body>
+<header>
+  <div class="header-container">
+    <div class="logo">ClosestFarm.com 🌱📍</div>
+    <div>
+      <button id="loginBtn">Sign In / Sign Up</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div id="map"></div>
+  <div id="infoCard"></div>
+</main>
+
+<footer>© 2026 ClosestFarm.com - Free & Open</footer>
+
+<script src="app.js" defer></script>
+</body>
+</html>
