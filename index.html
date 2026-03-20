@@ -3,62 +3,106 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ClosestFarm 🌱📍</title>
+<title>ClosestFarm 🌱</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+body {
+  font-family:'Poppins',sans-serif;
+  margin:0;
+  background:#f3f9f3;
+}
+
+/* HEADER */
+header {
+  background: linear-gradient(90deg,#2ecc71,#27ae60);
+  padding:16px 28px;
+  color:white;
+}
+.header-container{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  max-width:1200px;
+  margin:auto;
+}
+.logo{
+  font-size:1.6em;
+  font-weight:600;
+}
+.search-box{
+  display:flex;
+  gap:6px;
+}
+.search-box input{
+  padding:8px;
+  border-radius:5px;
+  border:none;
+  width:200px;
+}
+.search-box button{
+  padding:8px 14px;
+  border:none;
+  border-radius:5px;
+  background:#a3e635;
+  cursor:pointer;
+  font-weight:600;
+}
+
+/* MAP */
+#map{
+  height:75vh;
+}
+
+/* INFO CARD */
+#info{
+  padding:15px;
+  background:white;
+  box-shadow:0 6px 20px rgba(0,0,0,.2);
+  max-width:400px;
+  margin:-40px auto 20px auto;
+  border-radius:12px;
+  text-align:center;
+  opacity:0;
+  transition:.4s;
+}
+#info.show{
+  opacity:1;
+}
+
+/* FOOTER */
+footer{
+  background:#1b4332;
+  color:#d8f3dc;
+  padding:20px;
+  text-align:center;
+}
+</style>
 </head>
+
 <body>
+
 <header>
   <div class="header-container">
-    <div class="logo">ClosestFarm 🌿📍</div>
-    <div class="search-login">
-      <input type="text" id="marketSearch" placeholder="Search farmers market...">
-      <button id="searchBtn">Search</button>
-      <button id="loginBtn">Login</button>
+    <div class="logo">ClosestFarm 🌱</div>
+    <div class="search-box">
+      <input type="text" id="locationInput" placeholder="Enter city...">
+      <button onclick="searchLocation()">Find Markets</button>
     </div>
   </div>
 </header>
 
-<main>
-  <div id="map"></div>
-  <div id="infoCard" class="hidden">
-    <h2 id="marketName">Market Name</h2>
-    <div id="marketPhotos" class="photos"></div>
-    <button id="checkInBtn">Check In</button>
-    <div class="social-share">
-      <span>Share:</span>
-      <button id="shareFB">FB</button>
-      <button id="shareTW">TW</button>
-      <button id="shareTT">TT</button>
-    </div>
-  </div>
-</main>
+<div id="map"></div>
+<div id="info"></div>
 
 <footer>
-  <div class="footer-container">
-    <div class="footer-section">
-      <h3>About ClosestFarm</h3>
-      <p>Find and check in at farmers markets near you. Works without login!</p>
-    </div>
-    <div class="footer-section">
-      <h3>How to Use</h3>
-      <p>
-        • Search or click a market on the map.<br>
-        • Check in & upload photos (optional login).<br>
-        • Share to social media.<br>
-        • Mobile-friendly & responsive.
-      </p>
-    </div>
-    <div class="footer-section">
-      <h3>Technology</h3>
-      <p>• Leaflet.js<br>• HTML / CSS / JavaScript<br>• Local JSON data for markets</p>
-    </div>
-  </div>
-  <div class="footer-bottom">2026 ClosestFarm</div>
+  🌿 Find local farmers markets near you — fresh, local, sustainable
 </footer>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="app.js" defer></script>
+<script src="script.js"></script>
+
 </body>
 </html>
