@@ -1,23 +1,18 @@
+// ----------------------
+// Main JS for ClosestFarm
+// ----------------------
+
+// Make sure to include data.js before this file
 let map;
 let markers = [];
 let airportMarkers = [];
-
-// Famous airports (zoom anchors)
-const airports = [
-    { name: "LAX - Los Angeles", lat: 33.9416, lon: -118.4085 },
-    { name: "JFK - New York", lat: 40.6413, lon: -73.7781 },
-    { name: "ORD - Chicago", lat: 41.9742, lon: -87.9073 },
-    { name: "DFW - Dallas", lat: 32.8998, lon: -97.0403 },
-    { name: "LAS - Las Vegas", lat: 36.0840, lon: -115.1537 },
-    { name: "ATL - Atlanta", lat: 33.6407, lon: -84.4277 }
-];
 
 // Initialize map
 function initMap() {
     map = L.map('map').setView([39.5, -98.35], 4);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; OpenStreetMap'
+        attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
     addAirportMarkers();
@@ -33,41 +28,42 @@ function initMap() {
     }
 }
 
-// Add airport markers (anchors)
+// Add airport markers (zoom anchors)
 function addAirportMarkers() {
     airports.forEach(airport => {
         const marker = L.marker([airport.lat, airport.lon]).addTo(map);
-
         marker.bindPopup(`<b>${airport.name}</b><br>Click to explore markets`);
-
         marker.on('click', () => {
             map.setView([airport.lat, airport.lon], 12);
             findMarkets(airport.lat, airport.lon);
         });
-
         airportMarkers.push(marker);
     });
 }
 
-// Search location
+// Search location via input
 async function searchLocation() {
     const query = document.getElementById('locationInput').value;
+    if (!query) return;
 
-    const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`);
-    const data = await res.json();
+    try {
+        const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}`);
+        const data = await res.json();
 
-    if (!data.length) return alert("Location not found");
+        if (!data.length) return alert("Location not found");
 
-    const lat = data[0].lat;
-    const lon = data[0].lon;
+        const lat = parseFloat(data[0].lat);
+        const lon = parseFloat(data[0].lon);
 
-    map.setView([lat, lon], 12);
-    findMarkets(lat, lon);
+        map.setView([lat, lon], 12);
+        findMarkets(lat, lon);
+    } catch (err) {
+        alert("Failed to fetch location");
+    }
 }
 
-// Fetch farmers markets (IMPROVED QUERY)
+// Fetch farmers markets using Overpass API
 async function findMarkets(lat, lon) {
-
     // Clear old markers
     markers.forEach(m => map.removeLayer(m));
     markers = [];
@@ -83,11 +79,7 @@ async function findMarkets(lat, lon) {
     `;
 
     try {
-        const res = await fetch("https://overpass-api.de/api/interpreter", {
-            method: "POST",
-            body: query
-        });
-
+        const res = await fetch("https://overpass-api.de/api/interpreter", { method: "POST", body: query });
         const data = await res.json();
 
         if (!data.elements.length) {
@@ -104,30 +96,23 @@ async function findMarkets(lat, lon) {
             }).addTo(map);
 
             const name = place.tags.name || "Local Market";
-
             marker.bindPopup(`<b>${name}</b>`);
+
+            marker.on('click', () => updateInfo(`<h2>${name}</h2><p>Latitude: ${place.lat.toFixed(4)} | Longitude: ${place.lon.toFixed(4)}</p>`));
 
             markers.push(marker);
         });
 
         updateInfo(`🌱 Found ${data.elements.length} markets nearby`);
-
     } catch (err) {
         showFallbackMarkets(lat, lon);
     }
 }
 
-// Fallback markets (always show something)
+// Fallback markets using data.js offsets
 function showFallbackMarkets(lat, lon) {
-
-    const fallback = [
-        { name: "Community Farmers Market", lat: lat + 0.02, lon: lon + 0.02 },
-        { name: "Local Organic Farm Stand", lat: lat - 0.015, lon: lon + 0.01 },
-        { name: "Fresh Produce Market", lat: lat + 0.01, lon: lon - 0.02 }
-    ];
-
-    fallback.forEach(place => {
-        const marker = L.circleMarker([place.lat, place.lon], {
+    fallbackMarkets.forEach(place => {
+        const marker = L.circleMarker([lat + place.offsetLat, lon + place.offsetLon], {
             radius: 8,
             color: "#14532d",
             fillColor: "#4ade80",
@@ -135,19 +120,26 @@ function showFallbackMarkets(lat, lon) {
         }).addTo(map);
 
         marker.bindPopup(`<b>${place.name}</b><br>(Estimated)`);
+        marker.on('click', () => updateInfo(`<h2>${place.name}</h2><p>Estimated market location</p>`));
 
         markers.push(marker);
     });
 
-    updateInfo("⚠️ Showing nearby estimated markets (limited data area)");
+    updateInfo("⚠️ Showing estimated markets (limited data area)");
 }
 
 // Update info card
-function updateInfo(text) {
+function updateInfo(content) {
     const info = document.getElementById('info');
-    info.innerHTML = text;
+    info.innerHTML = content;
     info.classList.add('show');
 }
 
-// Init
+// Event listeners
+document.getElementById('searchBtn').addEventListener('click', searchLocation);
+document.getElementById('locationInput').addEventListener('keypress', e => {
+    if (e.key === 'Enter') searchLocation();
+});
+
+// Initialize
 window.onload = initMap;
